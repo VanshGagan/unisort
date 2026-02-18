@@ -2,9 +2,8 @@
 
 import os
 import shutil
+import json
 
-downloads = os.path.expanduser('~/Downloads')
-target = os.path.expanduser('~/Documents/UZHSkripts')
 
 ascii_art = """
 
@@ -16,7 +15,31 @@ ascii_art = """
 
 """
 
-print(ascii_art)
+
+def load_config():
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+    return config
+
+source_folder = os.path.expanduser(load_config()['source_folder'])
+destination_folders = {k: os.path.expanduser(v) for k, v in load_config()['destination_folders'].items()}
+
+options = ", ".join(destination_folders.keys())
+
+if __name__ == "__main__":
+    print(ascii_art)
+    for filename in os.listdir(source_folder):
+        if filename.endswith('.pdf'):
+            user_input = input(f"Move: {filename} to?\n{options}\n\n")
+            for option, path in destination_folders.items():
+                if user_input == option:
+                    shutil.move(f"{source_folder}/{filename}", f"{path}")
+                    print(f"Moved: {filename} to {option}")
+
+
+            #https://python-inquirer.readthedocs.io/en/latest/usage.html
+
+'''
 
 for filename in os.listdir(downloads):
     if filename.endswith('.pdf'):
@@ -45,3 +68,4 @@ for filename in os.listdir(downloads):
         print("Skipped: " + filename + " (not a PDF) \n \n ")
 print(" \n Nothing to sort // Exiting... \n \n ")
 
+'''
