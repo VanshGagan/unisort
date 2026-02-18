@@ -1,0 +1,10 @@
+PARAMETERS FOR JSON FILE
+
+source folder (such as downloads)
+target folder where the course folders are (such as documents)
+
+names of the courses/folders 
+paths to the folders
+
+
+
