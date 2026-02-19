@@ -3,6 +3,9 @@
 import os
 import shutil
 import json
+import inquirer
+import time
+
 
 
 ascii_art = """
@@ -26,15 +29,32 @@ destination_folders = {k: os.path.expanduser(v) for k, v in load_config()['desti
 
 options = ", ".join(destination_folders.keys())
 
+def getAwnser(fname, destination_options):
+    questions = [
+    inquirer.List('folder',
+                    message=f"Where do you want to move {fname}?",
+                    choices=[option for option in destination_options.keys()],
+                ),
+    ]
+    return inquirer.prompt(questions)["folder"]
+
 if __name__ == "__main__":
     print(ascii_art)
     for filename in os.listdir(source_folder):
         if filename.endswith('.pdf'):
-            user_input = input(f"Move: {filename} to?\n{options}\n\n")
+            awnser = getAwnser(filename, destination_folders)
             for option, path in destination_folders.items():
-                if user_input == option:
+                if awnser == option:
                     shutil.move(f"{source_folder}/{filename}", f"{path}")
                     print(f"Moved: {filename} to {option}")
+                    time.sleep(1)
+
+        else:
+            print("Skipped: " + filename + " (not a PDF) \n \n ")
+            time.sleep(1)
+    time.sleep(1)
+    print(" \n Nothing to sort // Exiting... \n \n ")
+
 
 
             #https://python-inquirer.readthedocs.io/en/latest/usage.html
