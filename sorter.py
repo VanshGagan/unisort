@@ -20,16 +20,23 @@ def run_sorter(config):
 
 
     for filename in os.listdir(source_folder):
+        moved = False
         for ending in config["file_types"]:
             if filename.endswith(ending):
                 awnser = getAnswer(filename, destination_folders)
+                if awnser == "X":
+                    print(f"Skipped: {filename} (skip selected by user) \n \n ")
+                    time.sleep(1)
+                    moved = True
+                    continue
                 for option, path in destination_folders.items():
                     if awnser == option:
                         shutil.move(f"{source_folder}/{filename}", f"{path}")
                         print(f"Moved: {filename} to {option}")
                         time.sleep(1)
+                        moved = True
 
-            else:
+            elif moved == False:
                 print(f"Skipped: {filename} (not a selected type) \n \n ")
                 time.sleep(1)
     time.sleep(1)
