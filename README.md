@@ -44,9 +44,13 @@ python3 main.py --clearsetup
 ```
 
 ## Arguments
-Argument,Shortcut,Description
---setup,-s,  ----> Opens the configuration menu.
---clearsetup,-cs, ----> Deletes the current config.json.
+
+Argument  | Function
+------------------- | --------------------------------
+--help or -h        | list of available arguments
+--setup or -s       | Opens the configuration menu.
+--clearsetup or -cs | Deletes the current config.json.
+
 
 
 I am currently working on a solution to bundle the tool as a standalone executable, allowing you to call it directly from your command line as a global system command.
