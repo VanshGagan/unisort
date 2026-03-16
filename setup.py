@@ -1,12 +1,26 @@
 import json
+import time
+import os
 import config
 
 
 def update_source():
     cfg = config.load_config()
-    user_source = input("Please provide the path for your source-folder:   ")
+    while True:
+
+        user_source = input("Please provide the path for your source-folder: (x to skip)   ").strip()
+        user_source = os.path.expanduser(user_source)
+        if os.path.exists(user_source):
+            print("Proceeding...")
+            time.sleep(1)
+            break
+        elif user_source.lower() == "x":
+            break
+        else:
+            print("please enter a valid path")
     cfg["source_folder"] = user_source
     config.save_config(cfg)
+
 
 
 
