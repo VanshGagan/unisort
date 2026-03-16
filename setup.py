@@ -3,6 +3,23 @@ import time
 import os
 import config
 
+def update_destination():
+    cfg = config.load_config()
+    while True:
+
+        destination_folder = input("Please provide the path for a destination-folder: (x to end)   ").strip()
+        if destination_folder.lower() == "x":
+            break
+        user_destination = os.path.expanduser(destination_folder)
+        if os.path.exists(user_destination):
+            print("Proceeding...")
+            time.sleep(1)
+            folder_name = input("Please provide a name for the folder {user_destination}:  ")
+            cfg["destination_folders"][folder_name] = user_destination
+            config.save_config(cfg)
+
+        else:
+            print("please enter a valid path")
 
 def update_source():
     cfg = config.load_config()
@@ -20,6 +37,8 @@ def update_source():
             print("please enter a valid path")
     cfg["source_folder"] = user_source
     config.save_config(cfg)
+    update_destination()
+
 
 
 
