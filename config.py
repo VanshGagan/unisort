@@ -12,7 +12,9 @@ def save_config(config_file):
 def clear_config():
     empty_config = {
         "source_folder": "",
-        "destination_folders": {}
+        "destination_folders": {},
+        "file_types": []
     }
     save_config(empty_config)
     print("Configuration cleared and reset to defaults.")
+

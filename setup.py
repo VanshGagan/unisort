@@ -3,6 +3,16 @@ import time
 import os
 import config
 
+def update_file_types():
+    cfg = config.load_config()
+    while True:
+
+        file_type = input("Please provide the file types:  (x to end)   ").strip()
+        if file_type.lower() == "x":
+            break
+        cfg["file_types"].append(file_type)
+        config.save_config(cfg)
+
 def update_destination():
     cfg = config.load_config()
     while True:
@@ -20,6 +30,8 @@ def update_destination():
 
         else:
             print("please enter a valid path")
+
+    update_file_types()
 
 def update_source():
     cfg = config.load_config()
