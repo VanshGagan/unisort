@@ -1,61 +1,54 @@
-# UniSort
+#  UniSort 📂
 
+UniSort is a command-line tool designed to keep your workspace tidy. It makes sorting files effortless—no more tedious dragging and dropping files manually.
 
-**UniSort** is a lightweight command-line tool for interactively sorting files based on file types and user-defined destination folders.  
-It is designed to help organize files in a configurable and modular way, keeping the code clean and easily extendable for future features.
+Just set your source folder, define your destination folders, and specify the file types you want to organize.
+Run the program and quickly sort each file using a clean, interactive UI.
 
----
+## ✨ Features
+* **Interactive Setup:** Easily configure your source and destination folders.
+* **Custom Rules:** Define which file types (e.g., .pdf, .png) go to which folder.
+* **Interactive UI:** Moves files easialy with the interactive interface.
+* **Reset Option:** Quickly clear your settings and start fresh.
 
-## 📂 Project Structure
-unisort/
-│
-├── main.py # Entry point of the program
-├── sorter.py # Core logic for interactive file sorting
-├── config.py # Handles loading of configuration from config.json
-├── utils.py # Helper functions and ASCII art
-├── config.json # User-defined configuration for source/destination folders and file types
-└── README.md # Project documentation
+## 🚀 How to Use
 
+### 1. Installation
+Clone the repository and install the required dependencies:
 
+```bash
+git clone [https://github.com/VanshGagan/unisort.git](https://github.com/VanshGagan/unisort.git)
+cd unisort
+pip install -r requirements.txt
+```
+### 2. Configuration
+Before sorting, run the setup wizard to define your folders and rules. This will update the config.json file in your project directory:
 
----
-
-## ⚙️ Configuration
-
-The program uses a `config.json` file to define the source folder, destination folders, and file types to sort.  
-This allows easy adjustments without modifying the code.
-
-Example structure of `config.json`:
-
-```json
-{
-  "source_folder": "~/Downloads",
-  "destination_folders": {
-    "Documents": "~/Documents",
-    "Images": "~/Pictures",
-    "Videos": "~/Videos"
-  },
-  "file_types": [".pdf", ".txt", ".jpg", ".png", ".mp4"]
-}
+```bash
+python3 main.py --setup
 ```
 
-source_folder → folder where files are located
+### 3. Running the sorter 
+Once configured, simply run the script to organize your files. UniSort will read your config.json and move all matching files to their designated folders:
 
-destination_folders → target folders for sorting
+```bash
+python3 main.py
+```
 
-file_types → only files with these extensions will be conside
-
-
-### Features
-
-Interactive CLI sorting using inquirer
-
-Fully configurable via config.json
-
-Clean, modular Python structure
-
-Skips files that do not match the configured file types
-
-Ready for extension with future features like automatic sorting, logging, or enhanced CLI interface
+### 4. Resetting 
+To clear all saved configurations and delete the config.json file:
 
 
+```bash
+python3 main.py --clearsetup
+```
+
+## Arguments
+Argument,Shortcut,Description
+--setup,-s,  ----> Opens the configuration menu.
+--clearsetup,-cs, ----> Deletes the current config.json.
+
+
+I am currently working on a solution to bundle the tool as a standalone executable, allowing you to call it directly from your command line as a global system command.
+
+#  Created to keep your folders clean 🤙
