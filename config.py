@@ -8,3 +8,11 @@ def load_config():
 def save_config(config_file):
     with open("config.json", "w") as f:
         json.dump(config_file, f, indent=4)
+
+def clear_config():
+    empty_config = {
+        "source_folder": "",
+        "destination_folders": {}
+    }
+    save_config(empty_config)
+    print("Configuration cleared and reset to defaults.")
