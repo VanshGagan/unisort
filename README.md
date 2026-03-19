@@ -17,7 +17,7 @@ Run the program and quickly sort each file using a clean, interactive UI.
 Clone the repository and install the required dependencies:
 
 ```bash
-git clone [https://github.com/VanshGagan/unisort.git](https://github.com/VanshGagan/unisort.git)
+git clone https://github.com/VanshGagan/unisort.git
 cd unisort
 pip install -r requirements.txt
 ```
